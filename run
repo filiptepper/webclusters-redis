@@ -3,4 +3,15 @@
 $:.unshift File.dirname(__FILE__)
 
 require "common"
-require ARGV[0]
+
+if ARGV[0] == "all"
+  %w[
+    benchmark-memcached-mget
+    benchmark-redis-mget
+    benchmark-redis 
+    benchmark-memcached
+    benchmark-redis-pipelined 
+  ].each { |file| require file }
+else
+  require ARGV[0]
+end
